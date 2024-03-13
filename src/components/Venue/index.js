@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 
 function App() {
-    const venue = ["ABC", "PQR", "XYZ", "CDEF"];
+    const venue = [
+        {name: "ABC", location: "Main Audi", capacity: 50},
+        {name: "PQR", location: "MBA Audi", capacity: 20}
+    ];
 
     return (
         <div className="App">
@@ -11,7 +14,7 @@ function App() {
                 </h2>
                 <Link to="/"><button>Home</button></Link>
                 {venue.map((ele) => (
-                    <button>{ele}</button>
+                    <p>{ele.name} :: {ele.location} :: {ele.capacity}</p>
                 ))}
             </header>
         </div>

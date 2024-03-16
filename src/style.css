@@ -1,0 +1,31 @@
+body {
+    text-align: center;
+    background-color: #ccf4ce; 
+}
+.App-header{
+    margin-top: 150px;
+    font-size:25px
+}
+
+button {
+    margin-right: 40px;
+    padding: 10px 20px;
+    margin-top: 70px;
+    background-color: #9af2e0;
+    color: rgb(0, 0, 0);
+    border: none;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+}
+
+button:hover {
+    background-color: #4fc7d2;
+}
+
+img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

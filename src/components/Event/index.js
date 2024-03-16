@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./style.css";
 
 function App() {
     const organizer = [
@@ -14,7 +15,7 @@ function App() {
                     ORGANIZER
                 </h2>
                 
-                <table>
+                <table className="event-table">
 
                     <thead>
                         <tr>

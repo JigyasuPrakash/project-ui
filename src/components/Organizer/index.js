@@ -1,29 +1,26 @@
 import { Link } from "react-router-dom";
+import "./style.css";
 
 function App() {
     const organizer = [
-        {comittee:"Music Club", poc_contact:"8372849132", poc_email:"mohannitin@gmail.com", poc_name:"Nitin Mohan"},
-        {comittee:"Music Club", poc_contact:"8372849132", poc_email:"mohannitin@gmail.com", poc_name:"Nitin Mohan"},
-        {comittee:"Music Club", poc_contact:"8372849132", poc_email:"mohannitin@gmail.com", poc_name:"Nitin Mohan"},
-        {comittee:"Music Club", poc_contact:"8372849132", poc_email:"mohannitin@gmail.com", poc_name:"Nitin Mohan"},
+        { comittee: "Music Club", poc_contact: "8372849132", poc_email: "mohannitin@gmail.com", poc_name: "Nitin Mohan" },
+        { comittee: "Music Club", poc_contact: "8372849132", poc_email: "mohannitin@gmail.com", poc_name: "Nitin Mohan" },
+        { comittee: "Music Club", poc_contact: "8372849132", poc_email: "mohannitin@gmail.com", poc_name: "Nitin Mohan" },
+        { comittee: "Music Club", poc_contact: "8372849132", poc_email: "mohannitin@gmail.com", poc_name: "Nitin Mohan" },
     ];
     return (
         <div className="App">
             <header className="App-header">
-                <h2>
-                    ORGANIZER
-                </h2>
-                
-                <table>
-
+                <h2>ORGANIZER</h2>
+                <table className="organizer-table">
                     <thead>
-                        <tr><th>comittee</th>
-                            <th>poc_contact</th>
-                            <th>poc_email</th>
-                            <th>poc_name</th>
+                        <tr>
+                            <th>Committee</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Name</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         {organizer.map((event, index) => (
                             <tr key={index}>
@@ -34,9 +31,7 @@ function App() {
                             </tr>
                         ))}
                     </tbody>
-                
                 </table>
-
                 <Link to="/"><button>Home</button></Link>
             </header>
         </div>

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./style.css";
 
 function App() {
     const venue = [
@@ -16,7 +17,7 @@ function App() {
                     VENUE
                 </h2>
                 
-                <table>
+                <table className="venue-table">
 
                     <thead>
                         <tr><th>Name</th>

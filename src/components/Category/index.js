@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./style.css";
 
 function App() {
     const category = [
@@ -14,8 +15,7 @@ function App() {
                 <h2>
                     CATEGORY
                 </h2>
-                
-                <table>
+                <table className="category-table">
 
                     <thead>
                         <tr><th>Name</th>

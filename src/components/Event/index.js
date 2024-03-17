@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './style.css';
+import { TableContainer, Paper, Table, TableHead, TableCell, TableRow } from '@mui/material'
 
 function App() {
 
@@ -10,7 +10,6 @@ function App() {
     useEffect(() => {
         axios.get("http://localhost:3030/event").then((response) => {
             if (response.status === 200) {
-                console.log(response.data);
                 setEvents(response.data);
             } else {
                 console.error("Something went wrong!");
@@ -24,33 +23,30 @@ function App() {
                 <h2>
                     EVENT
                 </h2>
-
-                <table className="event-table">
-                    <thead>
-                        <tr>
-                            <th>name</th>
-                            <th>year</th>
-                            <th>fee</th>
-                            <th>start_date</th>
-                            <th>end_date</th>
-
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {events.map((event, index) => (
-                            <tr key={index}>
-                                <td>{event.name}</td>
-                                <td>{event.year}</td>
-                                <td>{event.fee}</td>
-                                <td>{event.start_date}</td>
-                                <td>{event.end_date}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-
-                </table>
-
+                <TableContainer className={Paper}>
+                    <Table sx={{ minWidth: 650 }}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Event</TableCell>
+                                <TableCell>Year</TableCell>
+                                <TableCell>Fee</TableCell>
+                                <TableCell>Start Date</TableCell>
+                                <TableCell>End Date</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <tbody>
+                            {events.map((event, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{event.name}</TableCell>
+                                    <TableCell>{event.year}</TableCell>
+                                    <TableCell>{event.fee}</TableCell>
+                                    <TableCell>{event.start_date}</TableCell>
+                                    <TableCell>{event.end_date}</TableCell>
+                                </TableRow>
+                            ))}
+                        </tbody>
+                    </Table>
+                </TableContainer>
                 <Link to="/"><button>Home</button></Link>
             </header>
         </div>

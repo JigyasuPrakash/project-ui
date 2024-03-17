@@ -9,7 +9,7 @@ function App() {
 
     useEffect(() => {
         axios.get("http://localhost:3030/event").then((response) => {
-            if (response.status == 200) {
+            if (response.status === 200) {
                 console.log(response.data);
                 setEvents(response.data);
             } else {

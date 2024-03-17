@@ -1,22 +1,31 @@
 import { Link } from "react-router-dom";
-import "./style.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import './style.css';
 
 function App() {
-    const organizer = [
-        {name:"Nitin Mohan",year:[1,2,3], fee:"80", start_date:"6 March 2024 at 21:00:00 UTC+5:30", end_date:"7 March 2024 at 21:00:00 UTC+5:30"},
-        {name:"Nitin Mohan",year:[1,2,3], fee:"80", start_date:"6 March 2024 at 21:00:00 UTC+5:30", end_date:"7 March 2024 at 21:00:00 UTC+5:30"},
-        {name:"Nitin Mohan",year:[1,2,3], fee:"80", start_date:"6 March 2024 at 21:00:00 UTC+5:30", end_date:"7 March 2024 at 21:00:00 UTC+5:30"},
-        {name:"Nitin Mohan",year:[1,2,3], fee:"80", start_date:"6 March 2024 at 21:00:00 UTC+5:30", end_date:"7 March 2024 at 21:00:00 UTC+5:30"},
-    ];
+
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:3030/event").then((response) => {
+            if (response.status == 200) {
+                console.log(response.data);
+                setEvents(response.data);
+            } else {
+                console.error("Something went wrong!");
+            }
+        })
+    }, []);
+
     return (
         <div className="App">
             <header className="App-header">
                 <h2>
-                    ORGANIZER
+                    EVENT
                 </h2>
-                
-                <table className="event-table">
 
+                <table className="event-table">
                     <thead>
                         <tr>
                             <th>name</th>
@@ -29,7 +38,7 @@ function App() {
                     </thead>
 
                     <tbody>
-                        {organizer.map((event, index) => (
+                        {events.map((event, index) => (
                             <tr key={index}>
                                 <td>{event.name}</td>
                                 <td>{event.year}</td>
@@ -39,7 +48,7 @@ function App() {
                             </tr>
                         ))}
                     </tbody>
-                
+
                 </table>
 
                 <Link to="/"><button>Home</button></Link>

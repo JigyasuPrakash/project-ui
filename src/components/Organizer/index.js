@@ -1,37 +1,47 @@
 import { Link } from "react-router-dom";
-import "./style.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { TableContainer, Paper, Table, TableHead, TableCell, TableRow } from '@mui/material'
 
 function App() {
-    const organizer = [
-        { comittee: "Music Club", poc_contact: "8372849132", poc_email: "mohannitin@gmail.com", poc_name: "Nitin Mohan" },
-        { comittee: "Music Club", poc_contact: "8372849132", poc_email: "mohannitin@gmail.com", poc_name: "Nitin Mohan" },
-        { comittee: "Music Club", poc_contact: "8372849132", poc_email: "mohannitin@gmail.com", poc_name: "Nitin Mohan" },
-        { comittee: "Music Club", poc_contact: "8372849132", poc_email: "mohannitin@gmail.com", poc_name: "Nitin Mohan" },
-    ];
+    const [organizer, setOrganizer] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:3030/organizer").then((response) => {
+            if (response.status === 200) {
+                setOrganizer(response.data);
+            } else {
+                console.error("Something went wrong!");
+            }
+        })
+    }, []);
     return (
         <div className="App">
             <header className="App-header">
                 <h2>ORGANIZER</h2>
-                <table className="organizer-table">
-                    <thead>
-                        <tr>
-                            <th>Committee</th>
-                            <th>Contact</th>
-                            <th>Email</th>
-                            <th>Name</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {organizer.map((event, index) => (
-                            <tr key={index}>
-                                <td>{event.comittee}</td>
-                                <td>{event.poc_contact}</td>
-                                <td>{event.poc_email}</td>
-                                <td>{event.poc_name}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+
+                <TableContainer className={Paper}>
+                    <Table sx={{ minWidth: 650 }}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Committee</TableCell>
+                                <TableCell>Contact</TableCell>
+                                <TableCell>Email</TableCell>
+                                <TableCell>Name</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <tbody>
+                            {organizer.map((organizer, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{organizer.comittee}</TableCell>
+                                    <TableCell>{organizer.poc_contact}</TableCell>
+                                    <TableCell>{organizer.poc_email}</TableCell>
+                                    <TableCell>{organizer.poc_name}</TableCell>
+                                </TableRow>
+                            ))}
+                        </tbody>
+                    </Table>
+                </TableContainer>
                 <Link to="/"><button>Home</button></Link>
             </header>
         </div>

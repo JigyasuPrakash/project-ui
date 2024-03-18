@@ -1,43 +1,49 @@
 import { Link } from "react-router-dom";
 import "./style.css";
-
+import { useEffect , useState} from "react";
+import axios from "axios";
+import { TableContainer, Paper, Table, TableHead, TableCell, TableRow } from '@mui/material'
 function App() {
-    const category = [
-        {name: "Cultural", sponsor: true, audience_size: "small", duration: "one-day"},
-        {name: "Music", sponsor: true, audience_size: "small", duration: "one-day"},
-        {name: "Drama", sponsor: true, audience_size: "small", duration: "one-day"},
-        {name: "Sports", sponsor: true, audience_size: "small", duration: "one-day"}
+    const [category, setCategory] = useState([]);
 
-    ];
+    useEffect(() => {
+        axios.get("http://localhost:3030/category").then((response) => {
+            if (response.status === 200) {
+                setCategory(response.data);
+            } else {
+                console.error("Something went wrong!");
+            }
+        })
+    }, []);
+
     return (
         <div className="App">
             <header className="App-header">
                 <h2>
                     CATEGORY
                 </h2>
-                <table className="category-table">
-
-                    <thead>
-                        <tr><th>Name</th>
-                            <th>Sponsor</th>
-                            <th>Audience Size</th>
-                            <th>Duration</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {category.map((event, index) => (
-                            <tr key={index}>
-                                <td>{event.name}</td>
-                                <td>{event.sponsor ? "TRUE" : "FALSE"}</td>
-                                <td>{event.audience_size}</td>
-                                <td>{event.duration}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-
-                
-                </table>
+                <TableContainer className={Paper}>
+                    <Table sx={{ minWidth: 650 }}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell>Sponsor</TableCell>
+                                <TableCell>Audience Size</TableCell>
+                                <TableCell>Duration</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <tbody>
+                            {category.map((category, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{category.name}</TableCell>
+                                    <TableCell>{category.sponser ? "TRUE" : "FALSE"}</TableCell>
+                                    <TableCell>{category.audience_size}</TableCell>
+                                    <TableCell>{category.duration}</TableCell>
+                                </TableRow>
+                            ))}
+                        </tbody>
+                    </Table>
+                </TableContainer>
                 <Link to="/"><button>Home</button></Link>
 
 

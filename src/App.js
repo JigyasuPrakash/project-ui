@@ -9,11 +9,13 @@ function App() {
         <h1>
           Alpha Events
         </h1>
+
         <Link to="/venue"><button>Venue</button></Link>
         <Link to="/organizer"><button>Organizer</button></Link>
         <Link to="/category"><button>Category</button></Link>
         <Link to="/event"><button>Event</button></Link>
-        
+        <Link to="/poster"><button>Poster</button></Link>
+
       </header>
       <img src={crowdImage} alt="Crowd" />
     </div>

@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
-import "./style.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { TableContainer, Paper, Table, TableHead, TableCell, TableRow } from '@mui/material'
 
 function App() {
-    const venue = [
-        {name: "MG auditorium", location:"Globe square", approval_required: true,capacity:400},
-        {name: "MG auditorium", location:"Globe square", approval_required: true,capacity:400},
-        {name: "MG auditorium", location:"Globe square", approval_required: true,capacity:400},
-        {name: "MG auditorium", location:"Globe square", approval_required: true,capacity:400},
-    ];
+    const [venue, setVenue] = useState([]);
 
+    useEffect(() => {
+        axios.get("http://localhost:3030/venue").then((response) => {
+            if (response.status === 200) {
+                setVenue(response.data);
+            } else {
+                console.error("Something went wrong!");
+            }
+        })
+    }, []);
 
     return (
         <div className="App">
@@ -17,29 +23,28 @@ function App() {
                     VENUE
                 </h2>
                 
-                <table className="venue-table">
-
-                    <thead>
-                        <tr><th>Name</th>
-                            <th>location</th>
-                            <th>approval_required</th>
-                            <th>capacity</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {venue.map((event, index) => (
-                            <tr key={index}>
-                                <td>{event.name}</td>
-                                <td>{event.location}</td>
-                                <td>{event.approval_required ? "TRUE" : "FALSE"}</td>
-                                <td>{event.capacity}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-
-                
-                </table>
+                <TableContainer className={Paper}>
+                    <Table sx={{ minWidth: 650 }}>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell>Location</TableCell>
+                                <TableCell>Approval required</TableCell>
+                                <TableCell>capacity</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <tbody>
+                            {venue.map((venue, index) => (
+                                <TableRow key={index}>
+                                    <TableCell>{venue.name}</TableCell>
+                                    <TableCell>{venue.location}</TableCell>
+                                    <TableCell>{venue.approval_required ? "Yes" : "No"}</TableCell>
+                                    <TableCell>{venue.capacity}</TableCell>
+                                </TableRow>
+                            ))}
+                        </tbody>
+                    </Table>
+                </TableContainer>
                 <Link to="/"><button>Home</button></Link>
 
 

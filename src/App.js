@@ -14,7 +14,7 @@ function App() {
         <Link to="/organizer"><button>Organizer</button></Link>
         <Link to="/category"><button>Category</button></Link>
         <Link to="/event"><button>Event</button></Link>
-        <Link to="/poster"><button>Poster</button></Link>
+        <Link to="/photo"><button>PhotoGallery</button></Link>
 
       </header>
       <img src={crowdImage} alt="Crowd" />

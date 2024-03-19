@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
-import "./style.css";
 import { useEffect , useState} from "react";
 import axios from "axios";
 import { TableContainer, Paper, Table, TableHead, TableCell, TableRow } from '@mui/material'
+import { URL } from "../Constants";
 function App() {
     const [category, setCategory] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3030/category").then((response) => {
+        axios.get(`${URL}/category`).then((response) => {
             if (response.status === 200) {
                 setCategory(response.data);
             } else {

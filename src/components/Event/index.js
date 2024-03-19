@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { TableContainer, Paper, Table, TableHead, TableCell, TableRow } from '@mui/material'
-
+import { URL } from "../Constants";
 function App() {
 
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3030/event").then((response) => {
+        axios.get(`${URL}/event`).then((response) => {
             if (response.status === 200) {
                 setEvents(response.data);
             } else {

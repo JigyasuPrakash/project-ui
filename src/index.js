@@ -7,7 +7,7 @@ import Category from './components/Category';
 import Event from './components/Event';
 import Organizer from './components/Organizer'
 import NotFound from './components/NotFound';
-import Poster from './components/Poster';
+import PhotoGallery from './components/PhotoGallery/PhotoGallery';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
@@ -17,8 +17,9 @@ root.render(
       <Route path='/category' element={<Category />} />
       <Route path='/organizer' element={<Organizer />} />
       <Route path='/event' element={<Event />} />
-      <Route path='/poster' element={<Poster />} />
       <Route path='*' element={<NotFound />} />
+      <Route path='/photo' element={<PhotoGallery />} />
+
     </Routes>
   </BrowserRouter>
 );

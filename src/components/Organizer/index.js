@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { TableContainer, Paper, Table, TableHead, TableCell, TableRow } from '@mui/material'
-
+import { URL } from "../Constants";
 function App() {
     const [organizer, setOrganizer] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:3030/organizer").then((response) => {
+        axios.get(`${URL}/organizer`).then((response) => {
             if (response.status === 200) {
                 setOrganizer(response.data);
             } else {

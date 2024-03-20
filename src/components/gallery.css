@@ -1,0 +1,17 @@
+.carousel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* position: absolute; */
+}
+.imgdiv{
+    width: 250px;
+    height: 350px;
+}
+.caro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
